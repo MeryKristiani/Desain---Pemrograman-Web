@@ -1,6 +1,14 @@
 <?php
 require 'functions.php';
-$mahasiswa = query("SELECT * FROM mahasiswa")
+$mahasiswa = query("SELECT * FROM mahasiswa");
+
+//tombol cari ditekan 
+//cari pada line 7 adalah name dari button
+if(isset($_POST["cari"]))
+{
+    //cari line 10 adalah function cari dan keyword adalah name dari inputan text
+    $mahasiswa=cari($_POST["keyword"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,12 +49,23 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
             <ul class="nav navbar-nav">
                 <li class="active"><a href="index.php">Daftar Mahasiswa</a></li>
                 <li><a href="tambah_data.php">Tambah Data Mahasiswa</a></li>
+                <li><a href="edit.php">Update Data Mahasiswa</a></li>
             </ul>
     </nav>
 
     <h1 align="center"> Daftar Mahasiswa </h1>    
     <table border ="1" cellpadding="10" width="80%" align=center>
     <center><marquee behavior="alternate" onmouseover="this.stop()" onmouseout="this.start()" width="80%"><h5> SELAMAT DATANG DI WEB POLITEKNIK NEGERI MALANG </h5></marquee></center>
+
+    <form action="" method="post">
+        <!-- autofocus atribut pada html 5 yang digunakan untuk memberikan tanda pertama kali ke inputan pada saat page di reload -->
+        <!-- placeholder atribut yang digunakan untuk menampilkan tulisan pada textbox-->
+        <!-- autocomplete digunakan agar history pencarian dari user lain tidak ada-->
+
+        <center><input type="text" name="keyword" size="40" autofocus placeholder="masukkan keyword pencarian" autocomplete="off">
+        <button type="submit" name="cari" class="btn btn-primary"> Cari </button></center>
+    </form>
+
 
     <tr align="center">
         <th>No.</th>
@@ -68,7 +87,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa")
     <td>
     <img src="img/<?php echo $row["Gambar"]; ?>" alt="" heigth="200" width="100" srcset=""></td>
     <td>
-        <a href="">Edit</a>
+        <a href="edit.php?id=<?php echo $row["id"]; ?>">Edit</a>
         <a href="hapus.php?id=<?php echo $row["id"]; ?>" onclick="return confirm('Apakah data ini akan dihapus')">Hapus</a>
 </td>
 </tr>

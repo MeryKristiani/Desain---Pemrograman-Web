@@ -62,6 +62,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="index.php">Daftar Mahasiswa</a></li>
                 <li class="active"><a href="tambah_data.php">Tambah Data Mahasiswa</a></li>
+                <li><a href="edit.php">Update Data Mahasiswa</a></li>
             </ul>
     </nav>
 
